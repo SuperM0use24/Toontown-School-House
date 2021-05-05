@@ -4373,7 +4373,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def setInstaDelivery(self, flag):
         self.instaDelivery = flag
 
-    def getInstaKill(self):
+    def getInstaDelivery(self):
         return self.instaDelivery
 
     def setAlwaysHitSuits(self, alwaysHitSuits):
