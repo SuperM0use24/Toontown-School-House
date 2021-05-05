@@ -2173,10 +2173,10 @@ class InstaDelivery(MagicWord):
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
-        invoker.instantDelivery = not invoker.instantDelivery
+        invoker.instaDelivery = not invoker.instaDelivery
         for item in toon.onOrder:
             item.deliveryDate = int(time.time() / 60)  # Deliver all the packages that they already ordered, too.
-        return "Instant Delivery has been turned {0}.".format('on' if invoker.instantDelivery else 'off')
+        return "Instant Delivery has been turned {0}.".format('on' if invoker.instaDelivery else 'off')
 
 
 class SetMuzzle(MagicWord):
