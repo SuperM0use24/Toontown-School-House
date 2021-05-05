@@ -336,7 +336,7 @@ class UnlockEmotes(MagicWord):
             emoteAccess = [0] * len(OTPLocalizer.EmoteFuncDict)
 
         for emoteId in OTPLocalizer.EmoteFuncDict.values():
-            if emoteId > 25 or emoteId in [17, 18, 19]:
+            if emoteId > 24 or emoteId in [16, 17, 18, 19]:
                 continue
             emoteAccess[emoteId] = 1
 
@@ -859,10 +859,10 @@ class SpawnFO(MagicWord):
         except KeyError:
             return "You\'re not on a street!"
         if building is None:
-            return "Unable to spawn a %s Field Office with a difficulty of %d." % (ToontownGlobals.Dept2Dept.get(track), difficulty)
+            return "Unable to spawn a %s Field Office with a difficulty of %d." % (ToontownGlobals.Dept2Dept[track], difficulty)
 
         building.cogdoTakeOver(track, difficulty, 2)
-        return "Successfully spawned a %s Field Office with a difficulty of %d!" % (ToontownGlobals.Dept2Dept.get(track), difficulty)
+        return "Successfully spawned a %s Field Office with a difficulty of %d!" % (ToontownGlobals.Dept2Dept[track], difficulty)
 
 class SetCEIndex(MagicWord):
     aliases = ["setce", "ce", "cheesyeffect"]
@@ -1124,12 +1124,11 @@ class SetGM(MagicWord):
     aliases = ["gmicon", "gm"]
     desc = "Set the target's GM Icon."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    arguments = [("id", int, True), ("name", bool, False, False)]
+    arguments = [("id", int, True)]
     accessLevel = 'MODERATOR'
 
     def handleWord(self, invoker, avId, toon, *args):
         gmId = args[0]
-        name = args[1]
 
         #if gmId == 1:
         #    return 'This GM is reserved for the Toon Council. Use ~setGM 2 instead.'
@@ -1145,11 +1144,11 @@ class SetGM(MagicWord):
                 return "Your access level is too low to use this GM icon."
 
         if toon.isGM() and gmId != 0:
-            toon.b_setGM(0, name)
+            toon.b_setGM(0)
         elif toon.isGM and gmId == 0:
-            toon.b_setGM(0, True)
+            toon.b_setGM(0)
 
-        toon.b_setGM(gmId, name)
+        toon.b_setGM(gmId)
 
         if __debug__:
             pass
@@ -1157,7 +1156,6 @@ class SetGM(MagicWord):
             toon.d_requestVerifyGM()
 
         return "You have set %s to GM type %s" % (toon.getName(), gmId)
-
 
 class SetTickets(MagicWord):
     aliases = ["tickets"]
