@@ -20,6 +20,11 @@ class HolidayManagerAI:
 
         if self.currentHolidays:
             self.air.newsManager.d_setHolidayIdList(self.currentHolidays.keys())
+        
+        #temporary until holidays are properly implemented:
+        self.startHoliday(64)#hydrants
+        self.startHoliday(65)#mailboxes
+        self.startHoliday(66)#trash cans
 
     def isHolidayRunning(self, holidayId):
         return holidayId in self.currentHolidays
