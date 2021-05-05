@@ -4144,20 +4144,20 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         return False
 
     def _updateGMName(self, formerType = None):
-        if formerType is None:
-            formerType = self._gmType
-        name = self.name
-        if formerType is not None:
-            gmPrefix = TTLocalizer.GM_NAMES[formerType] + ' '
-            if self._nameIsPrefixed(gmPrefix):
-                name = self.name[len(gmPrefix):]
-        if self._isGM:
-            gmPrefix = TTLocalizer.GM_NAMES[self._gmType] + ' '
-            newName = gmPrefix + name
-        else:
-            newName = name
-        if self.name != newName:
-            self.b_setName(newName)
+        #if formerType is None:
+        #    formerType = self._gmType
+        #name = self.name
+        #if formerType is not None:
+        #    gmPrefix = TTLocalizer.GM_NAMES[formerType] + ' '
+        #    if self._nameIsPrefixed(gmPrefix):
+        #        name = self.name[len(gmPrefix):]
+        #if self._isGM:
+        #    gmPrefix = TTLocalizer.GM_NAMES[self._gmType] + ' '
+        #    newName = gmPrefix + name
+        #else:
+        #    newName = name
+        #if self.name != newName:
+        #    self.b_setName(newName)
         return
 
     def setName(self, name):
