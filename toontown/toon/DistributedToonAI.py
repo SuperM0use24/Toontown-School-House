@@ -208,6 +208,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         self.modulelist = ModuleListAI.ModuleList()
         self.unlimitedGags = False
         self.instaKill = False
+        self.instaDelivery = False
         self.alwaysHitSuits = False
         return
 
@@ -4361,6 +4362,19 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
 
     def getInstaKill(self):
         return self.instaKill
+
+    def b_setInstaDelivery(self, flag):
+        self.setInstaDelivery(flag)
+        self.d_setInstaDelivery(flag)
+
+    def d_setInstaDelivery(self, flag):
+        self.sendUpdate('setInstaDelivery', [flag])
+
+    def setInstaDelivery(self, flag):
+        self.instaDelivery = flag
+
+    def getInstaKill(self):
+        return self.instaDelivery
 
     def setAlwaysHitSuits(self, alwaysHitSuits):
         self.alwaysHitSuits = alwaysHitSuits
